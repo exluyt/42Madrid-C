@@ -1,1 +1,1 @@
-![42 Madrid Logo](https://upload.wikimedia.org/wikipedia/commons/8/8c/42_Logo.svg)
+![42 Madrid Logo]([https://upload.wikimedia.org/wikipedia/commons/8/8c/42_Logo.svg](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwomandigital.es%2Fevento%2Fcampus-42%2F&psig=AOvVaw3Ys0_iiQNkeAHpj3y5UY49&ust=1723483493156000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMDq07267YcDFQAAAAAdAAAAABAE))
