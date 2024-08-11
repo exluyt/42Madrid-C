@@ -1,1 +1,1 @@
-![42 Madrid Logo](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwomandigital.es%2Fevento%2Fcampus-42%2F&psig=AOvVaw3Ys0_iiQNkeAHpj3y5UY49&ust=1723483493156000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMDq07267YcDFQAAAAAdAAAAABAE)
+![42 Madrid Logo]([https://www.google.com/url?sa=i&url=https%3A%2F%2Fwomandigital.es%2Fevento%2Fcampus-42%2F&psig=AOvVaw3Ys0_iiQNkeAHpj3y5UY49&ust=1723483493156000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMDq07267YcDFQAAAAAdAAAAABAE](https://womandigital.es/wp-content/uploads/2023/05/42-Madrid.jpg))
