@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 09:11:49 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/18 09:23:40 by akiss            ###   ########.fr       */
+/*   Created: 2024/09/18 08:52:38 by akiss             #+#    #+#             */
+/*   Updated: 2024/09/25 11:11:42 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	int	len;
-
-	len = ft_strlen(s);
-	if (c == '\0')
+	while (*s != '\0')
 	{
-		return ((char *)&s[len]);
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+		s++;
 	}
-	while (len >= '\0')
-	{
-		if (s[len] == c)
-		{
-			return ((char *)&s[len]);
-		}
-		len--;
-	}
+	if ((unsigned char)c == '\0')
+		return ((char *)s);
 	return (NULL);
 }
 
@@ -36,10 +29,10 @@ char	*ft_strrchr(const char *s, int c)
 #include <stdio.h>
 int main ()
 {
-	// Test the ft_strrchr function
+	// Test the ft_strchr function
 	char *test_string = "Hello, World!";
-	char test_char = 'o';
-	char *result = ft_strrchr(test_string, test_char);
+	char test_char = 'z';
+	char *result = ft_strchr(test_string, test_char);
 	if (result)
 		printf("Character %c found at position %ld.\n", 
 		test_char, result - test_string);
