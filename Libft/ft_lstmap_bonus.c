@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:48:18 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/25 10:56:08 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/25 11:00:11 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,3 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (new_lst);
 }
-/* 
-int main ()
-{
-	t_list *lst = ft_lstnew("Hola");
-	t_list *lst2 = ft_lstnew("Mundo");
-	t_list *lst3 = ft_lstnew("Cruel");
-	lst->next = lst2;
-	lst2->next = lst3;
-	t_list *lst4 = ft_lstmap(lst, ft_strdup, free);
-	while (lst4)
-	{
-		printf("%s\n", lst4->content);
-		lst4 = lst4->next;
-	}
-	return 0;
-}
-*/
