@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 09:11:49 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/18 09:23:40 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/25 11:12:05 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ char	*ft_strrchr(const char *s, int c)
 	int	len;
 
 	len = ft_strlen(s);
-	if (c == '\0')
+	if ((unsigned char)c == '\0')
 	{
 		return ((char *)&s[len]);
 	}
 	while (len >= '\0')
 	{
-		if (s[len] == c)
+		if (s[len] == (unsigned char)c)
 		{
 			return ((char *)&s[len]);
 		}
