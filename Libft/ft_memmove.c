@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove(por hacer).c                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:51:37 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/18 13:02:32 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/25 10:29:42 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned char		*d;
 	const unsigned char	*s;
-	size_t				i;
 
 	d = (unsigned char *)dest;
 	s = (const unsigned char *)src;
-	i = 0;
 	if (d == s || n == 0)
 		return (dest);
 	if (d > s)
