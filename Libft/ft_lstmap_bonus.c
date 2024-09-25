@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:48:18 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/20 13:55:30 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/25 10:41:09 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*temp;
 
 	new_lst = NULL;
+	temp = NULL;
 	if (lst == NULL || f == NULL)
 		return (NULL);
 	while (lst)
