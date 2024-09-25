@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 08:43:57 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/19 10:45:55 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/25 10:30:28 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
-	int		i;
 	size_t	len;
 
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
@@ -23,7 +22,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (str == NULL)
 		return (NULL);
 	str[0] = '\0';
-	i = 0;
 	ft_strlcat(str, s1, len);
 	ft_strlcat(str, s2, len);
 	return (str);
