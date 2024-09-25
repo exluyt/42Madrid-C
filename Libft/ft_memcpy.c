@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy(por hacer).c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:15:47 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/20 14:55:29 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/18 10:25:48 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-/* 
+/*
 #include <stdio.h>
 #include <string.h>
 int main()
 {
-	char str[50] = "Geeks";
-	char str1[50] = "Quiz";
+	char str[50] = "GeeksForGeeks is for programming geeks.";
+	char str1[50] = "GeeksForGeeks is for programming geeks.";
 	printf("\nBefore memcpy(): %s\n", str);
-	ft_memcpy(str, str1, 4);
+	ft_memcpy(str + 13, str, 8);
 	printf("After memcpy():  %s\n", str);
 	printf("\nBefore memcpy(): %s\n", str1);
 	memcpy(str1 + 13, str1, 8);
 	printf("After memcpy():  %s\n", str1);
 	return 0;
 }
- */
+*/
