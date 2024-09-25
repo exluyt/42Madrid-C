@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:20:56 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/20 09:27:49 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/25 11:21:38 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static void	put_split(char **split, const char *str, char sep)
 			while (!char_sep(str[i + j], sep))
 				j++;
 			split[word] = (char *)malloc(sizeof(char) * (j + 1));
+			if (!split[word])
+				return ;
 			put_word(split[word], str + i, sep);
 			i += j;
 			word++;
