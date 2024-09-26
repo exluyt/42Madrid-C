@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:39:28 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/26 12:15:21 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/26 12:17:06 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_handle_pointer(va_list args)
 	ptr = va_arg(args, unsigned long long);
 	size = 0;
 	if (ptr == 0)
-		size += ft_putstr("0", 1);
+		size += ft_putstr("0x0", 1);
 	else
 		size += ft_putaddr(ptr, 1);
 	return (size);
