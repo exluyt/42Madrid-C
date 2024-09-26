@@ -3,9 +3,12 @@ CFLAGS = -Wall -Werror -Wextra
 NAME = libftprintf.a
 LIBFT_DIR = libft
 SRCS =	ft_printf.c \
-		ft_putaddr_fd.c \
+		ft_putaddr.c \
+		ft_putchar.c \
 		ft_puthex_lo_fd.c \
 		ft_puthex_up_fd.c \
+		ft_putnbr.c \
+		ft_putstr.c \
 
 OBJS = $(SRCS:.c=.o)
 

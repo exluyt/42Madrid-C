@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex_lo_fd.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 09:17:45 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/26 10:14:34 by akiss            ###   ########.fr       */
+/*   Created: 2024/09/26 09:48:17 by akiss             #+#    #+#             */
+/*   Updated: 2024/09/26 10:20:20 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_puthex_lo_fd(unsigned int nbr, int fd)
+int	ft_putnbr(int nb, int fd)
 {
-	char	*base;
-	int		size;
+	unsigned int	num;
+	int				size;
 
-	base = "0123456789abcdef";
 	size = 0;
-	if (nbr == 0)
-		size += (write(fd, "0", 1));
+	if (nb < 0)
+	{
+		size += write(fd, "-", 1);
+		num = -nb;
+	}
 	else
 	{
-		if (nbr >= 16)
-			size += ft_puthex_lo_fd(nbr / 16, fd);
-		size += write(fd, &base[nbr % 16], 1);
+		num = nb;
+	}
+	if (num < 10)
+	{
+		size += write(fd, &(char){num + '0'}, 1);
+	}
+	else
+	{
+		size += ft_putnbr(num / 10, fd);
+		size += write(fd, &(char){num % 10 + '0'}, 1);
 	}
 	return (size);
 }

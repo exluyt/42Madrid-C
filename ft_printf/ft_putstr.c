@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex_lo_fd.c                                  :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 09:17:45 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/26 10:14:34 by akiss            ###   ########.fr       */
+/*   Created: 2024/09/26 09:36:12 by akiss             #+#    #+#             */
+/*   Updated: 2024/09/26 10:20:31 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_puthex_lo_fd(unsigned int nbr, int fd)
+int	ft_putstr(char *s, int fd)
 {
-	char	*base;
-	int		size;
+	int	i;
 
-	base = "0123456789abcdef";
-	size = 0;
-	if (nbr == 0)
-		size += (write(fd, "0", 1));
-	else
+	i = 0;
+	while (s[i] != '\0')
 	{
-		if (nbr >= 16)
-			size += ft_puthex_lo_fd(nbr / 16, fd);
-		size += write(fd, &base[nbr % 16], 1);
+		write(fd, &s[i], 1);
+		i++;
 	}
-	return (size);
+	return (i);
 }
