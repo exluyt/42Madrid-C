@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:39:28 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/26 11:39:28 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/26 11:45:07 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,3 @@ int	ft_printf(char const *format, ...)
 	va_end(args);
 	return (size);
 }
-/* 
-int	main(void)
-{
-	printf("NULL %s NULL", NULL);
-	printf("\n");
-	ft_printf("%c", 'A');
-}
- */

@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:37:59 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/26 10:17:18 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/26 11:52:49 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_putaddr(unsigned long long number, int fd)
 		buffer[index] = 0;
 	ft_buffer_number(number, 16, buffer, 0);
 	size += write(fd, "0x", 2);
-	index = 16;
+	index = 15;
 	while (index >= 0 && buffer[index] == 0)
 		index--;
 	if (index < 0)
