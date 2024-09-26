@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:29:52 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/26 10:19:07 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/26 11:37:22 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int		ft_printf(const char *format, ...);
 int		ft_putaddr(unsigned long long number, int fd);
 int		ft_puthex_lo_fd(unsigned int nbr, int fd);
 int		ft_puthex_up_fd(unsigned long long nbr, int fd);
+int		ft_putnbr_u(unsigned int nb, int fd);
 
 #endif

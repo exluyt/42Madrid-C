@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:39:28 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/26 10:08:07 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/26 11:37:58 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,49 +60,11 @@ int	ft_printf(char const *format, ...)
 	va_end(args);
 	return (size);
 }
-
 /* 
 int	main(void)
 {
-	printf("%c", 'A');
+	printf("NULL %s NULL", NULL);
 	printf("\n");
 	ft_printf("%c", 'A');
-	
-	printf("\n");
-	printf("%s", "A b");
-	printf("\n");
-	ft_printf("%s", "A b");
-
-	printf("\n");
-	printf("%p", "Ar");
-	printf("\n");
-	ft_printf("%p", "Ar");
-
-	printf("\n");
-	printf("%d", 2);
-	printf("\n");
-	ft_printf("%d", 2);
-	
-	printf("\n");
-	printf("%u", 5);
-	printf("\n");
-	ft_printf("%u", 5);
-	
-	printf("\n");
-	printf("%x", 0x402015a);
-	printf("\n");
-	ft_printf("%x", 0x402015a);
-
-	printf("\n");
-	printf("%X", 0x402015a);
-	printf("\n");
-	ft_printf("%X", 0x402015a);
-	printf("\n");
-	
-	printf("%%");
-	printf("\n");
-	ft_printf("%%");
-	printf("\n");
-	return (0);
 }
  */
