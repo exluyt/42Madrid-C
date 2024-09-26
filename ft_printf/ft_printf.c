@@ -6,14 +6,36 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:39:28 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/26 11:45:07 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/26 12:08:31 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdarg.h>
 
-int	ft_format(va_list args, const char *format)
+static int	ft_handle_string(va_list args)
+{
+    char *str = va_arg(args, char *);
+    if (str == NULL)
+        return (ft_putstr("(null)", 1));
+    return (ft_putstr(str, 1));
+}
+
+static int	ft_handle_pointer(va_list args)
+{
+    unsigned long long ptr;
+    int size;
+
+	ptr = va_arg(args, unsigned long long);
+	size = 0;
+    if (ptr == 0)
+        size += ft_putstr("0", 1);
+    else
+        size += ft_putaddr(ptr, 1); 
+    return (size);
+}
+
+static int	ft_format(va_list args, const char *format)
 {
 	int	size;
 
@@ -21,9 +43,9 @@ int	ft_format(va_list args, const char *format)
 	if (*format == 'c')
 		size += ft_putchar(va_arg(args, int), 1);
 	else if (*format == 's')
-		size += ft_putstr(va_arg(args, char *), 1);
+		size += ft_handle_string(args);
 	else if (*format == 'p')
-		size += ft_putaddr(va_arg(args, unsigned long long), 1);
+		size += ft_handle_pointer(args);
 	else if (*format == 'd' || *format == 'i')
 		size += ft_putnbr(va_arg(args, int), 1);
 	else if (*format == 'u')
