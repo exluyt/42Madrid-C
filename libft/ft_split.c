@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:20:56 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/25 11:22:46 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/30 09:17:12 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ char	**ft_split(char const *s, char c)
 	return (split);
 }
 
-/*
+
 #include <stdio.h>
 #include <stdlib.h>
 int main() {
 	char **result;
-	char const *str = "Hello world, this is a test";
-	char sep = ' ';
+	char const *str = "";
+	char sep = 'z';
 	int i;
 
 	result = ft_split(str, sep);
@@ -105,4 +105,3 @@ int main() {
 
 	return 0;
 }
-*/
