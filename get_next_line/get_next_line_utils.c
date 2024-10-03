@@ -6,15 +6,31 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 10:57:42 by akiss             #+#    #+#             */
-/*   Updated: 2024/10/03 11:19:39 by akiss            ###   ########.fr       */
+/*   Updated: 2024/10/03 11:33:30 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+static char	*ft_realloc_line(char *line, int *capacity)
+{
+	char	*new_line;
+	int		i;
+
+	new_line = malloc(sizeof(char) * (*capacity * 2));
+	if (!new_line)
+		return (NULL);
+	i = -1;
+	while (++i < *capacity)
+		new_line[i] = line[i];
+	free(line);
+	*capacity *= 2;
+	return (new_line);
+}
+
 char	*ft_read_line(int fd, char *line, int *capacity)
 {
-	char	buffer[1];
+	char	buffer[BUFFER_SIZE];
 	int		i;
 
 	i = 0;
@@ -22,18 +38,16 @@ char	*ft_read_line(int fd, char *line, int *capacity)
 	{
 		if (i >= *capacity - 1)
 		{
-			*capacity *= 2;
-			line = ft_realloc(line, *capacity);
-			if (line == NULL)
+			line = ft_realloc_line(line, capacity);
+			if (!line)
 				return (NULL);
 		}
 		line[i++] = buffer[0];
 		if (buffer[0] == '\n')
 			break ;
 	}
-	if (line[i])
-		line[i] = '\0';
-	if (i <= 0)
+	line[i] = '\0';
+	if (i == 0)
 	{
 		free(line);
 		return (NULL);
@@ -58,23 +72,4 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		i++;
 	}
 	return (dest);
-}
-
-void	*ft_realloc(void *ptr, size_t size)
-{
-	void	*new_ptr;
-
-	if (ptr == NULL)
-		return (malloc(size));
-	if (size == 0)
-	{
-		free(ptr);
-		return (NULL);
-	}
-	new_ptr = malloc(size);
-	if (new_ptr == NULL)
-		return (NULL);
-	ft_memcpy(new_ptr, ptr, size);
-	free(ptr);
-	return (new_ptr);
 }
