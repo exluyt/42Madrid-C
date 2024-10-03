@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 10:57:42 by akiss             #+#    #+#             */
-/*   Updated: 2024/10/03 11:37:13 by akiss            ###   ########.fr       */
+/*   Updated: 2024/10/03 11:38:38 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ char	*ft_read_line(int fd, char *line, int *capacity)
 			break ;
 	}
 	line[i] = '\0';
+	if (i == 0)
+	{
+		free(line);
+		return (NULL);
+	}
 	return (line);
 }
 
