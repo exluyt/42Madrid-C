@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:15:13 by akiss             #+#    #+#             */
-/*   Updated: 2024/10/03 11:20:23 by akiss            ###   ########.fr       */
+/*   Updated: 2024/10/03 11:22:12 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 char	*get_next_line(int fd)
 {
 	char	*line;
-	int		i;
 	int		capacity;
 
 	capacity = BUFFER_SIZE + 1;
-	i = 0;
 	line = malloc(capacity);
 	if (!line)
 		return (NULL);
