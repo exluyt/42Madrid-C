@@ -1,85 +1,80 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   get_next_line_utils.c                              :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2024/09/30 10:15:17 by akiss             #+#    #+#             */
-// /*   Updated: 2024/09/30 13:54:05 by akiss            ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 10:57:42 by akiss             #+#    #+#             */
+/*   Updated: 2024/10/03 11:19:39 by akiss            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// #include "get_next_line.h"
+#include "get_next_line.h"
 
-// char *get_next_line(int fd)
-// {
-//     char *line;
-//     static char buffer[1]; // Asumiendo BUFFER_SIZE de 1 para simplificar
-//     int i = 0;
-//     int capacity = BUFFER_SIZE + 1; // Capacidad inicial de line
+char	*ft_read_line(int fd, char *line, int *capacity)
+{
+	char	buffer[1];
+	int		i;
 
-//     line = malloc(capacity);
-//     if (!line)
-//         return (NULL);
+	i = 0;
+	while (read(fd, buffer, 1) > 0)
+	{
+		if (i >= *capacity - 1)
+		{
+			*capacity *= 2;
+			line = ft_realloc(line, *capacity);
+			if (line == NULL)
+				return (NULL);
+		}
+		line[i++] = buffer[0];
+		if (buffer[0] == '\n')
+			break ;
+	}
+	if (line[i])
+		line[i] = '\0';
+	if (i <= 0)
+	{
+		free(line);
+		return (NULL);
+	}
+	return (line);
+}
 
-//     while (read(fd, buffer, 1) > 0)
-//     {
-//         if (i >= capacity - 1) // Necesitamos más espacio
-//         {
-//             capacity *= 2; // Duplicamos la capacidad
-//             char *new_line = realloc(line, capacity);
-//             if (!new_line)
-//             {
-//                 free(line); // No olvides liberar la memoria si realloc falla
-//                 return (NULL);
-//             }
-//             line = new_line;
-//         }
-//         line[i++] = buffer[0];
-//         if (buffer[0] == '\n')
-//             break;
-//     }
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
 
-//     if (i == 0) // No se leyó nada
-//     {
-//         free(line);
-//         return (NULL);
-//     }
+	if (!dest && !src)
+		return (NULL);
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	i = 0;
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dest);
+}
 
-//     line[i] = '\0'; // Aseguramos que la cadena esté terminada correctamente
-//     return (line);
-// }
+void	*ft_realloc(void *ptr, size_t size)
+{
+	void	*new_ptr;
 
-// #include <stdio.h>
-// int main(int argc, char **argv)
-// {
-// 	int fd;
-// 	char *line;
-
-// 	// Si no se pasan argumentos, usar stdin
-// 	if (argc == 1) {
-// 		fd = STDIN_FILENO;
-// 	} else {
-// 		// Intentar abrir el archivo proporcionado como argumento
-// 		fd = open(argv[1], O_RDONLY);
-// 		if (fd == -1) {
-// 			perror("Error al abrir el archivo");
-// 			return EXIT_FAILURE;
-// 		}
-// 	}
-
-// 	// Leer y imprimir líneas hasta que no haya más
-// 	while ((line = get_next_line(fd)) != NULL) {
-// 		printf("%s", line);
-// 		free(line); // Liberar la memoria asignada por get_next_line
-// 	}
-// 	// line = get_next_line(fd);
-// 	// printf("%s", line);
-
-// 	if (argc > 1) {
-// 		close(fd); // Cerrar el archivo si se abrió uno
-// 	}
-
-// 	return EXIT_SUCCESS;
-// }
+	if (ptr == NULL)
+		return (malloc(size));
+	if (size == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	new_ptr = malloc(size);
+	if (new_ptr == NULL)
+		return (NULL);
+	ft_memcpy(new_ptr, ptr, size);
+	free(ptr);
+	return (new_ptr);
+}

@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:15:13 by akiss             #+#    #+#             */
-/*   Updated: 2024/10/03 10:26:23 by akiss            ###   ########.fr       */
+/*   Updated: 2024/10/03 11:20:23 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,69 +14,54 @@
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	char	buffer[BUFFER_SIZE];
-	int			i;
-	int			capacity;
+	char	*line;
+	int		i;
+	int		capacity;
 
 	capacity = BUFFER_SIZE + 1;
 	i = 0;
 	line = malloc(capacity);
 	if (!line)
 		return (NULL);
-	while (read(fd, &buffer, 1) > 0)
+	if (ft_read_line(fd, line, &capacity) == NULL)
 	{
-		if (i  >= capacity - 1)
-		{
-			capacity *= 2;
-			line = realloc(line, capacity);
-			if (!line)
-				return (NULL);
-		}
-		line[i++] = buffer[0];
-		if (buffer[0] == '\n')
-			break ;
-	}
-	if(line[i])
-		line[i] = '\0';
-	if (i <= 0)
-	{
-		free(line);
 		return (NULL);
 	}
 	return (line);
 }
+/* 
+#include <stdio.h>
+int main(int argc, char **argv)
+{
+	int fd;
+	char *line;
 
+	// Si no se pasan argumentos, usar stdin
+	if (argc == 1) {
+		fd = STDIN_FILENO;
+	} else {
+		// Intentar abrir el archivo proporcionado como argumento
+		fd = open(argv[1], O_RDONLY);
+		if (fd == -1) {
+			perror("Error al abrir el archivo");
+			return EXIT_FAILURE;
+		}
+	}
 
-// #include <stdio.h>
-// int main(int argc, char **argv)
-// {
-// 	int fd;
-// 	char *line;
+	// Leer y imprimir líneas hasta que no haya más
+	while ((line = get_next_line(fd)) != NULL) {
+		printf("%s", line);
+		free(line); // Liberar la memoria asignada por get_next_line
+	}
+	free(line); // Liberar la memoria asignada para la última línea
 
-// 	// Si no se pasan argumentos, usar stdin
-// 	if (argc == 1) {
-// 		fd = STDIN_FILENO;
-// 	} else {
-// 		// Intentar abrir el archivo proporcionado como argumento
-// 		fd = open(argv[1], O_RDONLY);
-// 		if (fd == -1) {
-// 			perror("Error al abrir el archivo");
-// 			return EXIT_FAILURE;
-// 		}
-// 	}
+	// line = get_next_line(fd);
+	// printf("%s", line);
 
-// 	// Leer y imprimir líneas hasta que no haya más
-// 	while ((line = get_next_line(fd)) != NULL) {
-// 		printf("%s", line);
-// 		free(line); // Liberar la memoria asignada por get_next_line
-// 	}
-// 	// line = get_next_line(fd);
-// 	// printf("%s", line);
+	if (argc > 1) {
+		close(fd); // Cerrar el archivo si se abrió uno
+	}
 
-// 	if (argc > 1) {
-// 		close(fd); // Cerrar el archivo si se abrió uno
-// 	}
-
-// 	return EXIT_SUCCESS;
-// }
+	return EXIT_SUCCESS;
+}
+ */
