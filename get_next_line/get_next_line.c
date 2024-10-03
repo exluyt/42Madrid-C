@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:15:13 by akiss             #+#    #+#             */
-/*   Updated: 2024/10/03 11:33:23 by akiss            ###   ########.fr       */
+/*   Updated: 2024/10/03 11:44:40 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,39 +27,40 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-/* 
+/*
 #include <stdio.h>
-int main(int argc, char **argv)
-{
-	int fd;
-	char *line;
+int main(int argc, char **argv) {
+    int fd;
+    char *line;
 
-	// Si no se pasan argumentos, usar stdin
-	if (argc == 1) {
-		fd = STDIN_FILENO;
-	} else {
-		// Intentar abrir el archivo proporcionado como argumento
-		fd = open(argv[1], O_RDONLY);
-		if (fd == -1) {
-			perror("Error al abrir el archivo");
-			return EXIT_FAILURE;
-		}
-	}
+    // Si no se pasan argumentos, usar stdin
+    if (argc == 1) {
+        fd = STDIN_FILENO;
+        while ((line = get_next_line(fd)) != NULL) {
+            printf("%s", line);
+            free(line);
+        }
+        free(line);
+    } else {
+        // Iterar sobre cada archivo proporcionado como argumento
+        for (int i = 1; i < argc; i++) {
+            fd = open(argv[i], O_RDONLY);
+            if (fd == -1) {
+                perror("Error al abrir el archivo");
+                continue;
+            }
 
-	// Leer y imprimir líneas hasta que no haya más
-	while ((line = get_next_line(fd)) != NULL) {
-		printf("%s", line);
-		free(line); // Liberar la memoria asignada por get_next_line
-	}
-	free(line); // Liberar la memoria asignada para la última línea
+            // Leer y imprimir líneas hasta que no haya más
+            while ((line = get_next_line(fd)) != NULL) {
+                printf("%s", line);
+                free(line);
+            }
+            free(line);
 
-	// line = get_next_line(fd);
-	// printf("%s", line);
+            close(fd); // Cerrar el archivo antes de pasar al siguiente
+        }
+    }
 
-	if (argc > 1) {
-		close(fd); // Cerrar el archivo si se abrió uno
-	}
-
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
- */
+*/

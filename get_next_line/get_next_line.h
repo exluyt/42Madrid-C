@@ -6,14 +6,17 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:14:17 by akiss             #+#    #+#             */
-/*   Updated: 2024/10/03 11:38:42 by akiss            ###   ########.fr       */
+/*   Updated: 2024/10/03 11:45:03 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 
 # define GET_NEXT_LINE_H
-# define BUFFER_SIZE 42
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 # include <stdlib.h>
 # include <fcntl.h>
