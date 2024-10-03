@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 10:57:42 by akiss             #+#    #+#             */
-/*   Updated: 2024/10/03 11:38:38 by akiss            ###   ########.fr       */
+/*   Updated: 2024/10/03 11:54:54 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,16 @@ static char	*ft_realloc_line(char *line, int *capacity)
 
 	new_line = malloc(sizeof(char) * (*capacity * 2));
 	if (!new_line)
+	{
+		free(line);
+		line = NULL;
 		return (NULL);
+	}
 	i = -1;
 	while (++i < *capacity)
 		new_line[i] = line[i];
 	free(line);
+	line = NULL;
 	*capacity *= 2;
 	return (new_line);
 }
