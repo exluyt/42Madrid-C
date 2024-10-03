@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:15:13 by akiss             #+#    #+#             */
-/*   Updated: 2024/10/03 11:44:40 by akiss            ###   ########.fr       */
+/*   Updated: 2024/10/03 11:49:34 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (ft_read_line(fd, line, &capacity) == NULL)
 	{
+		free(line);
 		return (NULL);
 	}
 	return (line);
