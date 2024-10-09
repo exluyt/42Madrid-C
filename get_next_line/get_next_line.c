@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arpico <arpico@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:27:38 by arpico            #+#    #+#             */
-/*   Updated: 2024/10/08 21:14:42 by arpico           ###   ########.fr       */
+/*   Updated: 2024/10/09 10:38:36 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!past_line)
+	if (past_line == NULL)
 		past_line = ft_strndup("", 0);
 	past_line = ft_read_and_store(fd, past_line);
-	if (!past_line)
+	if (past_line == NULL)
 		return (NULL);
 	nl = ft_strchr(past_line, '\n');
 	if (nl == NULL && *past_line == '\0')
@@ -54,10 +54,10 @@ char	*ft_read_and_store(int fd, char *past_line)
 	char	*nl;
 
 	buffer = (char *)malloc(BUFFER_SIZE + 1);
-	if (!buffer)
+	if (buffer == NULL)
 		return (NULL);
 	nl = ft_strchr(past_line, '\n');
-	while (!nl)
+	while (nl == NULL)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
