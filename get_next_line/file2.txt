@@ -1,5 +1,0 @@
-archivo 2
-hola
-esto 
-es 
-bonito

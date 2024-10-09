@@ -3,78 +3,89 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
+/*   By: arpico <arpico@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 10:57:42 by akiss             #+#    #+#             */
-/*   Updated: 2024/10/03 11:54:54 by akiss            ###   ########.fr       */
+/*   Created: 2024/10/04 17:58:24 by arpico            #+#    #+#             */
+/*   Updated: 2024/10/04 18:33:34 by arpico           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_realloc_line(char *line, int *capacity)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*new_line;
-	int		i;
+	char	*str;
+	size_t	len;
 
-	new_line = malloc(sizeof(char) * (*capacity * 2));
-	if (!new_line)
-	{
-		free(line);
-		line = NULL;
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	str = malloc((len) * sizeof(char));
+	if (str == NULL)
 		return (NULL);
-	}
-	i = -1;
-	while (++i < *capacity)
-		new_line[i] = line[i];
-	free(line);
-	line = NULL;
-	*capacity *= 2;
-	return (new_line);
+	str[0] = '\0';
+	ft_strlcat(str, s1, len);
+	ft_strlcat(str, s2, len);
+	return (str);
 }
 
-char	*ft_read_line(int fd, char *line, int *capacity)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char	buffer[BUFFER_SIZE];
-	int		i;
+	size_t	dest_len;
+	size_t	src_len;
+	size_t	i;
 
+	dest_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	if (size <= dest_len)
+		return (size + src_len);
 	i = 0;
-	while (read(fd, buffer, 1) > 0)
+	while (src[i] != '\0' && (dest_len + i) < (size - 1))
 	{
-		if (i >= *capacity - 1)
-		{
-			line = ft_realloc_line(line, capacity);
-			if (!line)
-				return (NULL);
-		}
-		line[i++] = buffer[0];
-		if (buffer[0] == '\n')
-			break ;
-	}
-	line[i] = '\0';
-	if (i == 0)
-	{
-		free(line);
-		return (NULL);
-	}
-	return (line);
-}
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	unsigned char		*d;
-	const unsigned char	*s;
-	size_t				i;
-
-	if (!dest && !src)
-		return (NULL);
-	d = (unsigned char *)dest;
-	s = (const unsigned char *)src;
-	i = 0;
-	while (i < n)
-	{
-		d[i] = s[i];
+		dst[dest_len + i] = src[i];
 		i++;
 	}
+	dst[dest_len + i] = '\0';
+	return (dest_len + src_len);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	int	len;
+
+	len = 0;
+	while (s[len] != '\0')
+	{
+		len++;
+	}
+	return (len);
+}
+
+char	*ft_strndup(const char *s, size_t n)
+{
+	char	*dest;
+	size_t	i;
+
+	dest = malloc(n + 1);
+	if (dest == NULL)
+		return (NULL);
+	i = 0;
+	while (i < n && s[i] != '\0')
+	{
+		dest[i] = s[i];
+		i++;
+	}
+	dest[i] = '\0';
 	return (dest);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s != '\0')
+	{
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((unsigned char)c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
