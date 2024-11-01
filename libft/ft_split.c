@@ -84,24 +84,3 @@ char	**ft_split(char const *s, char c)
 	put_split(split, s, c);
 	return (split);
 }
-
-
-#include <stdio.h>
-#include <stdlib.h>
-int main() {
-	char **result;
-	char const *str = "";
-	char sep = 'z';
-	int i;
-
-	result = ft_split(str, sep);
-	i = 0;
-	while (result[i] != NULL) {
-		printf("Split[%d]: %s\n", i, result[i]);
-		free(result[i]); // Free each string
-		i++;
-	}
-	free(result); // Free the array of strings
-
-	return 0;
-}
