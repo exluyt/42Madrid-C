@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:27:38 by arpico            #+#    #+#             */
-/*   Updated: 2024/10/09 10:38:36 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/03 13:11:20 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (free(past_line), past_line = NULL, NULL);
 	if (past_line == NULL)
 		past_line = ft_strndup("", 0);
 	past_line = ft_read_and_store(fd, past_line);

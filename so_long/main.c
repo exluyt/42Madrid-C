@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:21:34 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/01 13:31:36 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/03 19:10:33 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,21 @@ int ft_esc(int keycode, t_vars *vars)
         ft_close(vars);
     else if (keycode == 119 || keycode == 65362)
     {
-        printf("You pressed the key w\n");
         vars->images.img_ply = mlx_xpm_file_to_image(vars->mlx, "sprites/Player_u.xpm", &vars->images.img_width, &vars->images.img_height);
         new_y--;
     }
     else if (keycode == 115 || keycode == 65364)
     {
-        printf("You pressed the key s\n");
         vars->images.img_ply = mlx_xpm_file_to_image(vars->mlx, "sprites/Player_d.xpm", &vars->images.img_width, &vars->images.img_height);
         new_y++;
     }
     else if (keycode == 97 || keycode == 65361)
     {
-        printf("You pressed the key a\n");
         vars->images.img_ply = mlx_xpm_file_to_image(vars->mlx, "sprites/Player_l.xpm", &vars->images.img_width, &vars->images.img_height);
         new_x--;
     }
     else if (keycode == 100 || keycode == 65363)
     {
-        printf("You pressed the key d\n");
         vars->images.img_ply = mlx_xpm_file_to_image(vars->mlx, "sprites/Player_r.xpm", &vars->images.img_width, &vars->images.img_height);
         new_x++;
     }
@@ -73,13 +69,8 @@ int ft_esc(int keycode, t_vars *vars)
     }
     else if (vars->map[new_y][new_x] == 'E' && is_collected == 1)
     {
-        printf("You win\n");
+        ft_printf("%s","You win\n");
         ft_close(vars);
-    }
-    
-    else
-    {
-        printf("You can't move there\n");
     }
 
     int j = 0;
@@ -111,6 +102,11 @@ int main(int argc, char **argv)
         vars.player_position_set = 0;
         vars.map = malloc(sizeof(char *) * 100);
         ft_show_map(argv[1], &vars);
+        if(ft_check_map(vars.map))
+        {
+            write(1, "Error\n", 6);
+            return (0);
+        }
         mlx_hook(vars.win, 2, 1L<<0, ft_esc, &vars);
         mlx_hook(vars.win, 17, 1L<<17, ft_close, &vars);
         mlx_loop(vars.mlx);
