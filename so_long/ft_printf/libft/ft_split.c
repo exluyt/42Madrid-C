@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:20:56 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/30 09:17:12 by akiss            ###   ########.fr       */
+/*   Updated: 2024/09/25 11:22:46 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,3 +84,25 @@ char	**ft_split(char const *s, char c)
 	put_split(split, s, c);
 	return (split);
 }
+
+/*
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+	char **result;
+	char const *str = "Hello world, this is a test";
+	char sep = ' ';
+	int i;
+
+	result = ft_split(str, sep);
+	i = 0;
+	while (result[i] != NULL) {
+		printf("Split[%d]: %s\n", i, result[i]);
+		free(result[i]); // Free each string
+		i++;
+	}
+	free(result); // Free the array of strings
+
+	return 0;
+}
+*/
