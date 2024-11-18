@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
+/*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:21:26 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/03 19:15:17 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/15 20:21:10 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int     ft_calc_height_map(char **map);
 int	    ft_calc_width(char *argv);
 void    ft_print(char *line, t_vars *vars, int j);
 int     ft_check_map(char **map);
+int     ft_close(t_vars *vars);
 
 #endif

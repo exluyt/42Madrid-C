@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
+/*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:39:00 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/03 19:18:07 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/15 20:20:10 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ int ft_calc_width_map(char **map)
 int	ft_check_map(char **map)
 {
     int i;
-    int j;
     int width;
 
-	j = 0;
 	i = 0;
     if (!map || !map[0])
         return (0);

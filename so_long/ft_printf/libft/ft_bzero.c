@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
+/*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:52:36 by akiss             #+#    #+#             */
-/*   Updated: 2024/09/17 13:48:30 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/18 10:43:22 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned int	i;
+	size_t              i;
 	char			*dest;
 
 	dest = s;

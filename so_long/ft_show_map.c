@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_show_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
+/*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:36:02 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/03 13:40:35 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/18 10:55:52 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,14 +118,14 @@ void	ft_show_map(char *argv, t_vars *vars)
 		close(fd);
 		return ;
 	}
-
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		vars->map[j] = line;
 		ft_print(line, vars, j);
+		line = get_next_line(fd);
 		j++;
 	}
-	free(line);
 	vars->map[j] = NULL;
 	close(fd);
 }
