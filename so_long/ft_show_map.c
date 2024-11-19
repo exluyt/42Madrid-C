@@ -6,94 +6,71 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:36:02 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/18 10:55:52 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/19 09:36:04 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_calc_width(char *argv)
-{
-	int		fd;
-	char	*line;
-	int		width;
-
-	width = 0;
-	fd = open(argv, O_RDONLY);
-	if (fd < 0)
-	{
-		write(1, "Error\n", 6);
-		return (0);
-	}
-	else
-	{
-		line = get_next_line(fd);
-		while (line[width] != '\0')
-			width++;
-	}
-	free(line);
-	close(fd);
-	get_next_line(-1);
-	return (width - 1);
-}
-
-int	ft_calc_height(char *argv)
-{
-	int		fd;
-	int		height;
-	char	*line;
-
-	height = 0;
-	fd = open(argv, O_RDONLY);
-	if (fd < 0)
-	{
-		write(1, "Error\n", 6);
-		return (0);
-	}
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		height++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return height;
-}
-
 void	ft_init_images(t_vars *vars)
 {
-	vars->images.img_wall = mlx_xpm_file_to_image(vars->mlx, "sprites/water.xpm", &vars->images.img_width, &vars->images.img_height);
-	vars->images.img_floor = mlx_xpm_file_to_image(vars->mlx, "sprites/floor.xpm", &vars->images.img_width, &vars->images.img_height);
-	vars->images.img_ply = mlx_xpm_file_to_image(vars->mlx, "sprites/Player_r.xpm", &vars->images.img_width, &vars->images.img_height);
-	vars->images.img_chest = mlx_xpm_file_to_image(vars->mlx, "sprites/Chest.xpm", &vars->images.img_width, &vars->images.img_height);
-	vars->images.img_exit = mlx_xpm_file_to_image(vars->mlx, "sprites/exit.xpm", &vars->images.img_width, &vars->images.img_height);
+	vars->images.img_wall = mlx_xpm_file_to_image(vars->mlx, "spr/water.xpm",
+			&vars->images.img_width, &vars->images.img_height);
+	vars->images.img_floor = mlx_xpm_file_to_image(vars->mlx, "spr/floor.xpm",
+			&vars->images.img_width, &vars->images.img_height);
+	vars->images.img_ply = mlx_xpm_file_to_image(vars->mlx, "spr/Ply_r.xpm",
+			&vars->images.img_width, &vars->images.img_height);
+	vars->images.img_chest = mlx_xpm_file_to_image(vars->mlx, "spr/Chest.xpm",
+			&vars->images.img_width, &vars->images.img_height);
+	vars->images.img_exit = mlx_xpm_file_to_image(vars->mlx, "spr/exit.xpm",
+			&vars->images.img_width, &vars->images.img_height);
 }
 
-void	ft_print(char *line, t_vars *vars, int j)
+void	ft_set_position(t_vars *vars, int i, int j)
 {
-	int	i; 
+	if (!vars->player_position_set)
+	{
+		vars->player_x = i;
+		vars->player_y = j;
+		vars->player_position_set = 1;
+	}
+}
+
+void	ft_set_player(t_vars *var, int prev_x, int prev_y)
+{
+	mlx_put_image_to_window(var->mlx, var->win, var->images.img_floor,
+		prev_x * var->images.img_width, prev_y * var->images.img_height);
+	mlx_put_image_to_window(var->mlx, var->win, var->images.img_floor,
+		var->player_x * var->images.img_width,
+		var->player_y * var->images.img_height);
+	mlx_put_image_to_window(var->mlx, var->win, var->images.img_ply,
+		var->player_x * var->images.img_width,
+		var->player_y * var->images.img_height);
+}
+
+void	ft_print(char *line, t_vars *var, int j)
+{
+	int	i;
+
 	i = 0;
 	while (line[i] != '\0')
 	{
 		if (line[i] == '1')
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->images.img_wall, i * vars->images.img_width, j * vars->images.img_height);
+			mlx_put_image_to_window(var->mlx, var->win, var->images.img_wall,
+				i * var->images.img_width, j * var->images.img_height);
 		else if (line[i] == '0')
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->images.img_floor, i * vars->images.img_width, j * vars->images.img_height);
+			mlx_put_image_to_window(var->mlx, var->win, var->images.img_floor,
+				i * var->images.img_width, j * var->images.img_height);
 		else if (line[i] == 'C')
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->images.img_chest, i * vars->images.img_width, j * vars->images.img_height);
+			mlx_put_image_to_window(var->mlx, var->win, var->images.img_chest,
+				i * var->images.img_width, j * var->images.img_height);
 		else if (line[i] == 'E')
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->images.img_exit, i * vars->images.img_width, j * vars->images.img_height);
+			mlx_put_image_to_window(var->mlx, var->win, var->images.img_exit,
+				i * var->images.img_width, j * var->images.img_height);
 		else if (line[i] == 'P')
 		{
-			if (!vars->player_position_set)
-			{
-				vars->player_x = i;
-				vars->player_y = j;
-				vars->player_position_set = 1;
-			}
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->images.img_floor, i * vars->images.img_width, j * vars->images.img_height);
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->images.img_ply, vars->player_x * vars->images.img_width, vars->player_y * vars->images.img_height);
+			ft_set_position(var, i, j);
+			ft_set_player(var, i, j);
 		}
 		i++;
 	}
@@ -108,13 +85,9 @@ void	ft_show_map(char *argv, t_vars *vars)
 	j = 0;
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
-	{
-		write(1, "Error\n", 6);
 		return ;
-	}
 	if (!vars->map)
 	{
-		write(1, "Error\n", 6);
 		close(fd);
 		return ;
 	}

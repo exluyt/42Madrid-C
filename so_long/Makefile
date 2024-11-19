@@ -1,10 +1,12 @@
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -I./minilibx
 LDFLAGS = -L./minilibx -lmlx -lXext -lX11
 PRINTF_DIR = ft_printf
 SRCS =  ft_show_map.c \
 		main.c \
 		ft_check_map.c \
+		ft_calc_size.c \
+		ft_esc.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 
