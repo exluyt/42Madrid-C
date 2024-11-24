@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:15:14 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/19 12:50:27 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/24 16:38:11 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,6 @@ void	update_map(t_vars *var, int new_x, int new_y)
 	}
 }
 
-void	render_map(t_vars *var)
-{
-	int	j;
-
-	j = 0;
-	while (var->map[j] != NULL)
-	{
-		ft_print(var->map[j], var, j);
-		j++;
-	}
-}
-
 int	ft_esc(int keycode, t_vars *var)
 {
 	int					new_x;
@@ -95,11 +83,11 @@ int	ft_esc(int keycode, t_vars *var)
 	prev_x = var->player_x;
 	prev_y = var->player_y;
 	if (keycode == 65307)
-		ft_close(var);
+		return (ft_close(var));
 	else
 		handle_keycode(keycode, var, &new_x, &new_y);
 	update_map(var, new_x, new_y);
 	ft_set_player(var, prev_x, prev_y);
 	ft_printf("Moves: %d\n", var->moves);
-	return (0);
+	return (EXIT_SUCCESS);
 }

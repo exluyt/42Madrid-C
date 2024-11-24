@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:43:24 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/19 09:11:18 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/24 16:42:36 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,14 @@ int	ft_calc_width(char *argv)
 	width = 0;
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
-	{
-		write(1, "Error\n", 6);
-		return (0);
-	}
+		return (perror("Error\n"), EXIT_FAILURE);
 	else
 	{
 		line = get_next_line(fd);
 		while (line[width] != '\0')
 			width++;
 	}
-	free(line);
-	close(fd);
-	get_next_line(-1);
-	return (width - 1);
+	return (free(line), close(fd), get_next_line(-1), width - 1);
 }
 
 int	ft_calc_height(char *argv)
@@ -46,10 +40,7 @@ int	ft_calc_height(char *argv)
 	height = 0;
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
-	{
-		write(1, "Error\n", 6);
-		return (0);
-	}
+		return (perror("Error\n"), EXIT_FAILURE);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -57,6 +48,5 @@ int	ft_calc_height(char *argv)
 		free(line);
 		line = get_next_line(fd);
 	}
-	close(fd);
-	return (height);
+	return (close(fd), height);
 }

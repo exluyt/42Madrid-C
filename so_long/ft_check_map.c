@@ -5,59 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 14:39:00 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/19 13:36:21 by akiss            ###   ########.fr       */
+/*   Created: 2024/11/24 15:06:09 by akiss             #+#    #+#             */
+/*   Updated: 2024/11/24 16:23:30 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	fill_map(char **map, t_vars var)
-{
-	char **copy;
-	int	i;
-
-	i = 0;
-	copy = malloc((var.height + 1) * sizeof(char *));
-	if (!copy)
-		return (EXIT_FAILURE);
-	copy[var.height] = NULL;
-	while(i < var.height)
-	{
-		copy[i] = ft_strdup(map[i]);
-		i++;
-	}
-}
-
-int	ft_so_long(char **map, t_vars var)
-{
-    int		j;
-    size_t	line_length;
-
-    if (!map || !map[0])
-        return (EXIT_FAILURE);
-
-    line_length = ft_strlen(map[0]);
-
-    j = 1;
-    while (j < var.height - 1)
-    {
-        if (ft_strlen(map[j]) != line_length)
-            return (EXIT_FAILURE);
-        j++;
-    }
-	if (ft_strlen(map[var.height - 1]) != line_length - 1)
-        return (EXIT_FAILURE);
-    return (EXIT_SUCCESS);
-}
-
 int	ft_is_c(char **map, t_vars var)
 {
 	int	i;
 	int	j;
-	int	countC;
+	int	count_c;
 
-	countC = 0;
+	count_c = 0;
 	j = 0;
 	while (j < var.height)
 	{
@@ -65,12 +26,12 @@ int	ft_is_c(char **map, t_vars var)
 		while (map[j][i] != '\0')
 		{
 			if (map[j][i] == 'C')
-				countC++;
+				count_c++;
 			i++;
 		}
 		j++;
 	}
-	if (countC < 1)
+	if (count_c < 1)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -79,11 +40,11 @@ int	ft_is_one_p_e(char **map, t_vars var)
 {
 	int	i;
 	int	j;
-	int	countP;
-	int	countE;
+	int	count_p;
+	int	count_e;
 
-	countP = 0;
-	countE = 0;
+	count_p = 0;
+	count_e = 0;
 	j = 0;
 	while (j < var.height)
 	{
@@ -91,14 +52,14 @@ int	ft_is_one_p_e(char **map, t_vars var)
 		while (map[j][i] != '\0')
 		{
 			if (map[j][i] == 'P')
-				countP++;
+				count_p++;
 			if (map[j][i] == 'E')
-				countE++;
+				count_e++;
 			i++;
 		}
 		j++;
 	}
-	if (countP != 1 || countE != 1)
+	if (count_p != 1 || count_e != 1)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -135,7 +96,9 @@ int	ft_check_map(char **map, t_vars var)
 {
 	if (!map || !map[0])
 		return (EXIT_FAILURE);
-	if (ft_is_one_row(map, var) == EXIT_FAILURE)
+	if (ft_all_chr(map, var) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	else if (ft_is_one_row(map, var) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	else if (ft_is_one_column(map, var) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
@@ -145,7 +108,7 @@ int	ft_check_map(char **map, t_vars var)
 		return (EXIT_FAILURE);
 	else if (ft_so_long(map, var))
 		return (EXIT_FAILURE);
-	else if (ft_fill_map(map, var))
+	else if (is_map_solvable(map, var) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
