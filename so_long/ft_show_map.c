@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:36:02 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/24 16:37:26 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/24 20:24:57 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_init_images(t_vars *vars)
 			&vars->images.img_width, &vars->images.img_height);
 	vars->images.img_exit = mlx_xpm_file_to_image(vars->mlx, "spr/exit.xpm",
 			&vars->images.img_width, &vars->images.img_height);
+	vars->images.img_enemy = mlx_xpm_file_to_image(vars->mlx, "spr/enemy_u.xpm",
+			&vars->images.img_width, &vars->images.img_height);
 }
 
 void	ft_set_position(t_vars *vars, int i, int j)
@@ -38,6 +40,7 @@ void	ft_set_position(t_vars *vars, int i, int j)
 
 void	ft_set_player(t_vars *var, int prev_x, int prev_y)
 {
+	ft_set_position(var, prev_x, prev_y);
 	mlx_put_image_to_window(var->mlx, var->win, var->images.img_floor,
 		prev_x * var->images.img_width, prev_y * var->images.img_height);
 	mlx_put_image_to_window(var->mlx, var->win, var->images.img_floor,
@@ -62,16 +65,17 @@ void	ft_print(char *line, t_vars *var, int j)
 			mlx_put_image_to_window(var->mlx, var->win, var->images.img_floor,
 				i * var->images.img_width, j * var->images.img_height);
 		else if (line[i] == 'C')
+		{
 			mlx_put_image_to_window(var->mlx, var->win, var->images.img_chest,
 				i * var->images.img_width, j * var->images.img_height);
+			var->collectible++;
+		}
 		else if (line[i] == 'E')
 			mlx_put_image_to_window(var->mlx, var->win, var->images.img_exit,
 				i * var->images.img_width, j * var->images.img_height);
 		else if (line[i] == 'P')
-		{
-			ft_set_position(var, i, j);
 			ft_set_player(var, i, j);
-		}
+		ft_print_enemy(line, var, i, j);
 		i++;
 	}
 }

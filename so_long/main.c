@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:21:34 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/24 16:42:04 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/24 20:31:48 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_free_images(t_vars *var)
 		mlx_destroy_image(var->mlx, var->images.img_chest);
 	if (var->images.img_exit)
 		mlx_destroy_image(var->mlx, var->images.img_exit);
+	if (var->images.img_enemy)
+		mlx_destroy_image(var->mlx, var->images.img_enemy);
 }
 
 int	ft_free_map(t_vars *var)
@@ -55,7 +57,14 @@ int	ft_close(t_vars *var)
 
 void	ft_initializes_mlx(t_vars *var, char *argv)
 {
+	var->rect_width = 120;
+	var->rect_height = 20;
+	var->color_bg = 0x000000;
+	var->is_enemy = 0;
+	var->collectible = 0;
 	var->width = ft_calc_width(argv);
+	if (var->width == EXIT_FAILURE)
+		return ;
 	var->height = ft_calc_height(argv);
 	var->mlx = mlx_init();
 	if (!var->mlx)
@@ -88,6 +97,7 @@ int	main(int argc, char **argv)
 			return (ft_printf("Error\nNot a valid map"),
 				ft_close(&var), EXIT_FAILURE);
 		var.moves = 0;
+		ft_moves_window(&var);
 		mlx_hook(var.win, 2, 1L << 0, ft_esc, &var);
 		mlx_hook(var.win, 17, 1L << 17, ft_close, &var);
 		mlx_loop(var.mlx);

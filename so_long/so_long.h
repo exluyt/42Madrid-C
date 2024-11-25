@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:21:26 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/24 16:38:25 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/24 20:24:45 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_images
 	void	*img_ply;
 	void	*img_chest;
 	void	*img_exit;
+	void	*img_enemy;
 	int		img_width;
 	int		img_height;
 }	t_images;
@@ -41,8 +42,16 @@ typedef struct s_vars
 	int			height;
 	int			player_x;
 	int			player_y;
+	int			enemy_x;
+	int			enemy_y;
+	int			is_enemy;
+	int			collectible;
 	int			moves;
 	int			player_position_set;
+	int			enemy_position_set;
+	int			rect_width;
+	int			rect_height;
+	int			color_bg;
 }	t_vars;
 
 int		ft_calc_width(char *argv);
@@ -72,5 +81,7 @@ int		ft_close(t_vars *var);
 void	ft_initializes_mlx(t_vars *var, char *argv);
 int		main(int argc, char **argv);
 int		ft_all_chr(char **map, t_vars var);
+void	ft_print_enemy(char *line, t_vars *var, int i, int j);
+void	ft_moves_window(t_vars *var);
 
 #endif
