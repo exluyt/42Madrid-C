@@ -10,12 +10,12 @@ SRCS =  ft_calc_size.c \
 		ft_show_map.c \
 		main.c \
 
-OBJS = $(SRCS:.c=.o) get_next_line/get_next_line.o get_next_line/get_next_line_utils.o
+OBJS = $(SRCS:.c=.o)
 NAME = so_long
 
 all: $(NAME)
 
-$(NAME): ft_printf get_next_line $(OBJS)
+$(NAME): ft_printf $(OBJS)
 	$(MAKE) -C $(PRINTF_DIR)
 	cp $(PRINTF_DIR)/libftprintf.a ./libftprintf.a
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) ./libftprintf.a $(LDFLAGS)
@@ -25,9 +25,6 @@ $(NAME): ft_printf get_next_line $(OBJS)
 
 ft_printf:
 	$(MAKE) -C $(PRINTF_DIR)
-
-get_next_line:
-	$(CC) $(CFLAGS) -c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c -o get_next_line/get_next_line.o
 
 clean:
 	rm -f $(OBJS)

@@ -1,5 +1,6 @@
 NAME = libft.a
 CC = cc
+GET_NEXT_DIR = get_next_line
 CFLAGS = -Wall -Wextra -Werror
 SRCS =  ft_atoi.c \
 		ft_bzero.c \
@@ -48,10 +49,14 @@ SRCS_BONUS = ft_lstnew_bonus.c \
 			 ft_lstiter_bonus.c \
 			 ft_lstmap_bonus.c
 
+SRC_GET = $(GET_NEXT_DIR)/get_next_line.c $(GET_NEXT_DIR)/get_next_line_utils.c
+
+OBJS_GET = $(SRC_GET:.c=.o)
+
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-$(NAME): $(OBJS) $(OBJS_BONUS)
-	ar rc $(NAME) $(OBJS) $(OBJS_BONUS)
+$(NAME):  get_next_line $(OBJS) $(OBJS_BONUS) $(OBJS_GET)
+	ar rc $(NAME) $(OBJS) $(OBJS_BONUS) $(OBJS_GET)
 	ranlib $(NAME)
 	touch bonus.bonus
 
@@ -68,7 +73,7 @@ bonus.bonus: $(OBJS_BONUS)
 	touch bonus.bonus
 
 clean:
-	rm -f $(OBJS) $(OBJS_BONUS) bonus.bonus
+	rm -f $(OBJS) $(OBJS_BONUS) $(OBJS_GET) bonus.bonus
 
 fclean: clean
 	rm -f $(NAME)

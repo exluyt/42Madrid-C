@@ -6,14 +6,14 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:21:26 by akiss             #+#    #+#             */
-/*   Updated: 2024/11/24 20:24:45 by akiss            ###   ########.fr       */
+/*   Updated: 2024/11/26 11:20:41 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "get_next_line/get_next_line.h"
+# include "ft_printf/libft/get_next_line/get_next_line.h"
 # include "ft_printf/ft_printf.h"
 # include <fcntl.h>
 # include <mlx.h>
