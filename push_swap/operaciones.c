@@ -6,13 +6,13 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 17:40:17 by akiss             #+#    #+#             */
-/*   Updated: 2024/12/08 18:19:08 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/17 21:02:59 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sa(t_slack **a)
+void sa(t_slack **a, bool print)
 {
 	t_slack *tmp;
 
@@ -22,9 +22,14 @@ void sa(t_slack **a)
 	(*a)->next = tmp->next;
 	tmp->next = *a;
 	*a = tmp;
+
+	if(print)
+	{
+		ft_printf("sa");
+	}
 }
 
-void sb(t_slack **b)
+void sb(t_slack **b, bool print)
 {
 	t_slack *tmp;
 
@@ -34,15 +39,25 @@ void sb(t_slack **b)
 	(*b)->next = tmp->next;
 	tmp->next = *b;
 	*b = tmp;
+
+	if(print)
+	{
+		ft_printf("sb");
+	}
 }
 
-void ss(t_slack **a, t_slack **b)
+void ss(t_slack **a, t_slack **b, bool print)
 {
-	sa(a);
-	sb(b);
+	sa(a, false);
+	sb(b, false);
+
+	if(print)
+	{
+		ft_printf("ss");
+	}
 }
 
-void pa(t_slack **a, t_slack **b)
+void pa(t_slack **a, t_slack **b, bool print)
 {
 	t_slack *tmp;
 
@@ -51,8 +66,13 @@ void pa(t_slack **a, t_slack **b)
 	tmp = (*b);
 	(*b) = (*b)->next;
 	ft_lstadd_front(a, tmp);
+
+	if(print)
+	{
+		ft_printf("pa");
+	}
 }
-void pb(t_slack **a, t_slack **b)
+void pb(t_slack **a, t_slack **b, bool print)
 {
 	t_slack *tmp;
 
@@ -61,4 +81,9 @@ void pb(t_slack **a, t_slack **b)
 	tmp = (*a);
 	(*a) = (*a)->next;
 	ft_lstadd_front(b, tmp);
+
+	if(print)
+	{
+		ft_printf("pb");
+	}
 }
