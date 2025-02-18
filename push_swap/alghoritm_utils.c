@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 20:40:29 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/17 20:59:01 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/18 12:10:44 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,34 @@ bool stack_ordered(t_slack *slack)
         slack = slack->next;
     }
     return (true);
+}
+
+void current_index(t_slack *slack)
+{
+    int i;
+    int median;
+
+    i = 0;
+    if(!slack)
+        return ;
+    median = ft_lstsize(slack) / 2;
+    while(slack)
+    {
+        slack->index = i;
+        if(i <= median)
+            slack->above_median = true;
+        else
+            slack->above_median = false;
+        slack = slack->next;
+        ++i;
+    }
+}
+
+void init_nodes_a(t_slack *a, t_slack *b)
+{
+    current_index(a);
+    current_index(b);
+    set_target_a(a, b);
+    cost_analysis_a(a, b);
+    set_cheapest_a(a);
 }

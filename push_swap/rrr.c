@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 18:55:14 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/17 20:54:41 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/18 13:24:47 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void rrr(t_slack **a, t_slack **b, bool print)
 {
-    rra(a);
-    rrb(b);
+    rra(a, false);
+    rrb(b, false);
 
     if(print)
         ft_printf("rrr");

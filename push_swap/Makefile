@@ -5,6 +5,10 @@ SRCS =	main.c \
 		operaciones.c \
 		operaciones_rotate.c \
 		rrr.c \
+		alghoritm.c \
+		alghoritm_utils.c \
+		alghoritm_utils2.c \
+		alghoritm_utils3.c \
 
 OBJS = $(SRCS:.c=.o)
 NAME = push_swap
