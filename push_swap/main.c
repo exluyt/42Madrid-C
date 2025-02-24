@@ -3,44 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
+/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:56:47 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/24 10:17:48 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/24 12:33:13 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void print_value(void *value)
+int	main(int argc, char **argv)
 {
-    printf("%d\n", *(int *)value);
-}
+	t_slack	*slack_a;
+	t_slack	*slack_b;
 
-int main(int argc, char **argv)
-{
-    t_slack *slack_a;
-    t_slack *slack_b;
-    
-    slack_a = NULL;
-    slack_b = NULL;
-
-    if(argc == 1 || (argc == 2 && !argv[1][0]))
-        return (EXIT_FAILURE);
-    else if (argc == 2)
-        argv = ft_split(argv[1], ' ');
-    create_stack_a(&slack_a, argv + 1);
-    if(!stack_ordered(slack_a))
-    {
-        if (ft_lstsize(slack_a) == 2)
-            sa(&slack_a, true);
-        else if (ft_lstsize(slack_a) == 3)
-            sort_small(&slack_a);
-        else
-            ft_turk(&slack_a, &slack_b);
-            
-    }
-    // ft_lstiter(slack_a, print_value);
-    free_stack(&slack_a);
-    return (0);
+	slack_a = NULL;
+	slack_b = NULL;
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
+		return (EXIT_FAILURE);
+	create_stack_a(&slack_a, argv + 1);
+	if (!stack_ordered(slack_a))
+	{
+		if (ft_lstsize(slack_a) == 2)
+			sa(&slack_a, true);
+		else if (ft_lstsize(slack_a) == 3)
+			sort_small(&slack_a);
+		else
+			ft_turk(&slack_a, &slack_b);
+	}
+	free_stack(&slack_a);
+	return (EXIT_SUCCESS);
 }

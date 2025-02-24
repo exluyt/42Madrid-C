@@ -3,30 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
+/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:19:13 by akiss             #+#    #+#             */
-/*   Updated: 2024/12/08 17:11:42 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/24 13:02:45 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-
 # define LIBFT_H
 
+# include "../../push_swap.h"
 # include <string.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdint.h>
 # include <stdlib.h>
-# include "../../push_swap.h"
 
-/* typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}			t_list;
- */
+typedef struct s_slack	t_slack;
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
 void	*ft_calloc(size_t nmemb, size_t size);

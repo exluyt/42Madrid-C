@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   rrr.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
+/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 18:55:14 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/24 10:17:03 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/24 12:26:26 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rrr(t_slack **a, t_slack **b, bool print)
+void	rrr(t_slack **a, t_slack **b, bool print)
 {
-    rra(a, false);
-    rrb(b, false);
-    if(print)
-        ft_printf("rrr\n");
+	rra(a, false);
+	rrb(b, false);
+	if (print)
+		ft_printf("rrr\n");
 }

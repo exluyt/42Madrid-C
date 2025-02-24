@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 PRINTF_DIR = ft_printf
 SRCS =	main.c \
 		operaciones.c \
@@ -11,7 +11,6 @@ SRCS =	main.c \
 		alghoritm_utils3.c \
 		alghoritm_utils4.c \
 		free.c \
-		split2.c \
 
 OBJS = $(SRCS:.c=.o)
 NAME = push_swap
