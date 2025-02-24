@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 17:40:17 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/17 21:02:59 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/24 10:19:00 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ void sa(t_slack **a, bool print)
 	(*a)->next = tmp->next;
 	tmp->next = *a;
 	*a = tmp;
-
 	if(print)
 	{
-		ft_printf("sa");
+		ft_printf("sa\n");
 	}
 }
 
@@ -39,10 +38,9 @@ void sb(t_slack **b, bool print)
 	(*b)->next = tmp->next;
 	tmp->next = *b;
 	*b = tmp;
-
 	if(print)
 	{
-		ft_printf("sb");
+		ft_printf("sb\n");
 	}
 }
 
@@ -50,10 +48,9 @@ void ss(t_slack **a, t_slack **b, bool print)
 {
 	sa(a, false);
 	sb(b, false);
-
 	if(print)
 	{
-		ft_printf("ss");
+		ft_printf("ss\n");
 	}
 }
 
@@ -66,10 +63,9 @@ void pa(t_slack **a, t_slack **b, bool print)
 	tmp = (*b);
 	(*b) = (*b)->next;
 	ft_lstadd_front(a, tmp);
-
 	if(print)
 	{
-		ft_printf("pa");
+		ft_printf("pa\n");
 	}
 }
 void pb(t_slack **a, t_slack **b, bool print)
@@ -81,9 +77,8 @@ void pb(t_slack **a, t_slack **b, bool print)
 	tmp = (*a);
 	(*a) = (*a)->next;
 	ft_lstadd_front(b, tmp);
-
 	if(print)
 	{
-		ft_printf("pb");
+		ft_printf("pb\n");
 	}
 }

@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrr.c                                              :+:      :+:    :+:   */
+/*   alghoritm_utils4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/08 18:55:14 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/24 10:17:03 by akiss            ###   ########.fr       */
+/*   Created: 2025/02/19 12:58:43 by akiss             #+#    #+#             */
+/*   Updated: 2025/02/24 10:20:15 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rrr(t_slack **a, t_slack **b, bool print)
+t_slack	*get_cheapest(t_slack *stack)
 {
-    rra(a, false);
-    rrb(b, false);
-    if(print)
-        ft_printf("rrr\n");
+	if (!stack)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->cheapest)
+			return (stack);
+		stack = stack->next;
+	}
+	return (NULL);
+}
+
+void	rev_rotate_both(t_slack **a, t_slack**b, t_slack *cheapest_node)
+{
+	while (*b != cheapest_node->target
+		&& *a != cheapest_node)
+		rrr(a, b, true);
+	current_index(*a);
+	current_index(*b);
 }

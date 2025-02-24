@@ -6,13 +6,13 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 20:40:29 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/18 12:10:44 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/19 14:30:19 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	long	result;
 	long	sign;
@@ -51,6 +51,7 @@ void append_node(t_slack **slack, int n)
         return ;
     node->next = NULL;
     node->value = n;
+    node->cheapest = 0;
     if(!(*slack))
     {
         *slack = node;
@@ -66,7 +67,7 @@ void append_node(t_slack **slack, int n)
 bool stack_ordered(t_slack *slack)
 {
     if (!slack)
-        return (true);
+        return (1); //si funciona probar con true
     while (slack->next)
     {
         if (slack->value > slack->next->value)
@@ -103,5 +104,5 @@ void init_nodes_a(t_slack *a, t_slack *b)
     current_index(b);
     set_target_a(a, b);
     cost_analysis_a(a, b);
-    set_cheapest_a(a);
+    set_cheapest(a);
 }

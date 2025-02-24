@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 19:43:26 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/18 13:29:20 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/24 10:02:43 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	create_stack_a(t_slack **a, char **argv)
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
 			free_errors(a);
-		if (error_duplicate(*a, (int)n))
+		if (error_duplicate(*a, n))
 			free_errors(a);
-		append(a, (int)n);
+		append_node(a, n);
 		i++;
 	}
 }
@@ -65,8 +65,7 @@ void ft_turk(t_slack **a, t_slack **b)
 		init_nodes_b(*a, *b);
 		move_b_to_a(a, b);
 	}
-	current_index(*a);
-	min_on_top(a, );
+	min_on_top(a);
 }
 
 void set_target_a(t_slack *a, t_slack *b)

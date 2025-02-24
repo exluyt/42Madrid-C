@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 16:44:21 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/18 13:28:39 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/24 09:51:23 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ void    rr(t_slack **a, t_slack **b, bool print);
 void   rra(t_slack **a, bool print);
 void    rrb(t_slack **b, bool print);
 void    rrr(t_slack **a, t_slack **b, bool print);
-void seat_cheapest(t_slack *slack);
-int	ft_atol(const char *nptr);
+void set_cheapest(t_slack *slack);
+long	ft_atol(const char *nptr);
 void append_node(t_slack **slack, int n);
 bool stack_ordered(t_slack *slack);
 void current_index(t_slack *slack);
 void init_nodes_a(t_slack *a, t_slack *b);
 void move_a_to_b(t_slack **a, t_slack **b);
 void move_b_to_a(t_slack **a, t_slack **b);
-void min_on_top(t_slack **a, t_slack **b);
+void min_on_top(t_slack **a);
 void rotate_both(t_slack **a, t_slack **b, t_slack *cheapest);
 void prep_for_push(t_slack **stack, t_slack *top_node, char stack_name);
 void	create_stack_a(t_slack **a, char **argv);
@@ -65,6 +65,8 @@ void	free_errors(t_slack **a);
 void	free_stack(t_slack **stack);
 int	error_syntax(char *str_n);
 int	error_duplicate(t_slack *a, int n);
-
+t_slack	*find_max(t_slack *stack);
+t_slack	*get_cheapest(t_slack *stack);
+void	rev_rotate_both(t_slack **a, t_slack**b, t_slack *cheapest_node);
 
 #endif

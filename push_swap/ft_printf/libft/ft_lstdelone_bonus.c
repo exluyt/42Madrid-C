@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:26:55 by akiss             #+#    #+#             */
-/*   Updated: 2024/12/08 16:40:49 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/19 13:04:23 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_lstdelone(t_slack *lst, void (*del)(void*))
 {
-	del(lst->value);
-	free(lst);
+    int *value_ptr;
+
+    value_ptr = &(lst->value);
+    del(value_ptr);
+    free(lst);
 }

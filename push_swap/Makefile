@@ -9,6 +9,9 @@ SRCS =	main.c \
 		alghoritm_utils.c \
 		alghoritm_utils2.c \
 		alghoritm_utils3.c \
+		alghoritm_utils4.c \
+		free.c \
+		split2.c \
 
 OBJS = $(SRCS:.c=.o)
 NAME = push_swap

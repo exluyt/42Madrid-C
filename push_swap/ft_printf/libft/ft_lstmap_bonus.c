@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:48:18 by akiss             #+#    #+#             */
-/*   Updated: 2024/12/08 16:41:54 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/19 13:05:23 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_slack	*ft_lstmap(t_slack *lst, void *(*f)(void *), void (*del)(void *))
 	new_lst = NULL;
 	while (lst)
 	{
-		temp = f(lst->value);
+		temp = f(&(lst->value));
 		if (!temp)
 		{
 			ft_lstclear(&new_lst, del);

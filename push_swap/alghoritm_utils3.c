@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alhoritm_utils3.c                                  :+:      :+:    :+:   */
+/*   alghoritm_utils3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:00:52 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/18 13:12:03 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/19 14:31:08 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,24 @@ t_slack	*find_min(t_slack *stack)
 		stack = stack->next;
 	}
 	return (min_node); 
+}
+
+t_slack	*find_max(t_slack *stack)
+{
+	long			max;
+	t_slack	        *max_node;
+
+	if (!stack)
+		return (NULL);
+	max = LONG_MIN;
+	while (stack)
+	{
+		if (stack->value > max)
+		{
+			max = stack->value;
+			max_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (max_node);
 }

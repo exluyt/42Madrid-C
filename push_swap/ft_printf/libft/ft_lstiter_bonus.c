@@ -6,7 +6,7 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:47:20 by akiss             #+#    #+#             */
-/*   Updated: 2024/12/08 16:41:00 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/19 13:04:53 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	ft_lstiter(t_slack *lst, void (*f)(void *))
 {
-	if (lst == NULL)
-		return ;
-	while (lst != NULL)
-	{
-		f(lst->value);
-		lst = lst->next;
-	}
+    if (lst == NULL)
+        return ;
+    while (lst != NULL)
+    {
+        int *value_ptr = &(lst->value);
+        f(value_ptr);
+        lst = lst->next;
+    }
 }

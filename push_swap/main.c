@@ -6,11 +6,16 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:56:47 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/18 13:24:29 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/24 10:17:48 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void print_value(void *value)
+{
+    printf("%d\n", *(int *)value);
+}
 
 int main(int argc, char **argv)
 {
@@ -33,7 +38,9 @@ int main(int argc, char **argv)
             sort_small(&slack_a);
         else
             ft_turk(&slack_a, &slack_b);
+            
     }
+    // ft_lstiter(slack_a, print_value);
     free_stack(&slack_a);
     return (0);
 }

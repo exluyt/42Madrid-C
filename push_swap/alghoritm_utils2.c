@@ -6,13 +6,13 @@
 /*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:25:13 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/18 13:15:15 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/19 13:06:58 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void seat_cheapest(t_slack *slack)
+void set_cheapest(t_slack *slack)
 {
     long cheapest_value;
     t_slack *cheapest_node;
@@ -46,13 +46,7 @@ void move_a_to_b(t_slack **a, t_slack **b)
     pb(a, b, true);
 }
 
-void move_b_to_a(t_slack **a, t_slack **b)
-{
-    prep_for_push(a, (*b)->target, 'a');
-    pa(a, b, true);
-}
-
-void min_on_top(t_slack **a, t_slack **b)
+void min_on_top(t_slack **a)
 {
     while((*a)->value != find_min(*a)->value)
     {
