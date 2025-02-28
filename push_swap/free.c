@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
+/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:22:37 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/18 13:28:14 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/24 12:33:42 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@ int	error_duplicate(t_slack *a, int n)
 	return (0);
 }
 
-
 void	free_stack(t_slack **stack)
 {
-	t_slack	    *tmp;
-	t_slack	    *current;
+	t_slack	*tmp;
+	t_slack	*current;
 
 	if (!stack)
 		return ;

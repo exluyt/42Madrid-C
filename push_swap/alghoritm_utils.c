@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alghoritm_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akiss <akiss@student.42.fr>                +#+  +:+       +#+        */
+/*   By: akiss <akiss@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 20:40:29 by akiss             #+#    #+#             */
-/*   Updated: 2025/02/19 14:30:19 by akiss            ###   ########.fr       */
+/*   Updated: 2025/02/24 12:37:50 by akiss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ long	ft_atol(const char *nptr)
 {
 	long	result;
 	long	sign;
-	int	i;
+	int		i;
 
 	sign = 1;
 	result = 0;
@@ -39,70 +39,71 @@ long	ft_atol(const char *nptr)
 	return (result * sign);
 }
 
-void append_node(t_slack **slack, int n)
+void	append_node(t_slack **slack, int n)
 {
-    t_slack *node;
-    t_slack *last;
+	t_slack	*node;
+	t_slack	*last;
 
-    if (!slack)
-        return ;
-    node = malloc(sizeof(t_slack));
-    if (!node)
-        return ;
-    node->next = NULL;
-    node->value = n;
-    node->cheapest = 0;
-    if(!(*slack))
-    {
-        *slack = node;
-        node->prev = NULL;
-    }
-    else
-    {
-        last = ft_lstlast(*slack);
-        last->next = node;
-        node->prev = last;
-    }
-}
-bool stack_ordered(t_slack *slack)
-{
-    if (!slack)
-        return (1); //si funciona probar con true
-    while (slack->next)
-    {
-        if (slack->value > slack->next->value)
-            return (false);
-        slack = slack->next;
-    }
-    return (true);
+	if (!slack)
+		return ;
+	node = malloc(sizeof(t_slack));
+	if (!node)
+		return ;
+	node->next = NULL;
+	node->value = n;
+	node->cheapest = 0;
+	if (!(*slack))
+	{
+		*slack = node;
+		node->prev = NULL;
+	}
+	else
+	{
+		last = ft_lstlast(*slack);
+		last->next = node;
+		node->prev = last;
+	}
 }
 
-void current_index(t_slack *slack)
+bool	stack_ordered(t_slack *slack)
 {
-    int i;
-    int median;
-
-    i = 0;
-    if(!slack)
-        return ;
-    median = ft_lstsize(slack) / 2;
-    while(slack)
-    {
-        slack->index = i;
-        if(i <= median)
-            slack->above_median = true;
-        else
-            slack->above_median = false;
-        slack = slack->next;
-        ++i;
-    }
+	if (!slack)
+		return (true);
+	while (slack->next)
+	{
+		if (slack->value > slack->next->value)
+			return (false);
+		slack = slack->next;
+	}
+	return (true);
 }
 
-void init_nodes_a(t_slack *a, t_slack *b)
+void	current_index(t_slack *slack)
 {
-    current_index(a);
-    current_index(b);
-    set_target_a(a, b);
-    cost_analysis_a(a, b);
-    set_cheapest(a);
+	int	i;
+	int	median;
+
+	i = 0;
+	if (!slack)
+		return ;
+	median = ft_lstsize(slack) / 2;
+	while (slack)
+	{
+		slack->index = i;
+		if (i <= median)
+			slack->above_median = true;
+		else
+			slack->above_median = false;
+		slack = slack->next;
+		++i;
+	}
+}
+
+void	init_nodes_a(t_slack *a, t_slack *b)
+{
+	current_index(a);
+	current_index(b);
+	set_target_a(a, b);
+	cost_analysis_a(a, b);
+	set_cheapest(a);
 }
